@@ -4,18 +4,14 @@ import javax.swing.*;
 
 public class Project0 {
     public static void main(String[] args){
-        int E=0, e=0;
 
 
-        Boolean b = true;
 
-        while(b){
-
+        while(true){
+            int E=0, e=0;
             String in = JOptionPane.showInputDialog("Please enter a sentence:");
-            System.out.println(in);
-
             if(in.equalsIgnoreCase("stop")){
-                b = false;
+                System.exit(0);
             }
 
             for(int i=0; i<in.length(); i++){
