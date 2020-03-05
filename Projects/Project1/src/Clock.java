@@ -1,4 +1,15 @@
+/**
+ * @AUthor: Khademul Mahin
+ *
+ * The Clock class helps to
+ * keep a lot of data like
+ * hours, minutes, and seconds
+ * into one object.
+ */
+
 public class Clock {
+
+    // Initialize hours, minutes and seconds into private integers
     private int h, m, s;
 
     public Clock(int hours, int minutes,int seconds){
@@ -10,7 +21,6 @@ public class Clock {
     public int getHour(){
         return this.h;
     }
-
     public int getMinutes(){
         return this.m;
     }
@@ -20,10 +30,10 @@ public class Clock {
 
     // Get methods
 
+
     public void setHour(int hour){
         this.h = hour;
     }
-
     public void setMinutes(int minutes){
         this.m = minutes;
     }
