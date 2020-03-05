@@ -6,16 +6,19 @@ public class Project1 {
 //        Clock c = new Clock(10, 23, 50);
 //        System.out.print(c.toString());
         Clock[] c = new Clock[50];
-        Clock[] d = new Clock[50];
+
 
         String[] lines = new String[50];
 
         int size = inputFromFile(args[0], lines);
+        Clock[] d = new Clock[size];
+        int[] hours = new int[size];
+
+
 
         for(int i=0; i < size; i++ ){
             StringTokenizer tokens = new StringTokenizer(lines[i], ":");
             int[] time = new int[3];
-
 
             int k=0;
             while(tokens.hasMoreTokens()){
@@ -29,38 +32,36 @@ public class Project1 {
 
 
 
-
         for(int j = 0; j< size; j++){
             d[j] = c[j];
+            hours[j] = d[j].getHour();
             System.out.println(c[j].toString());
         }
 
-    }
-
-    public void selectionSort(int[] arr, int size){
+        // Selection Sort
         int min_idx=0;
 
-        for(int i = 0; i< size ; i++){
-            if(arr[min_idx] > arr[i]  ){
-                min_idx = i;
+        for(int i = 0; i< size -1 ; i++){
+            for(int j = i +1; j < size; j++) {
+                if(hours[min_idx] < hours[j]  ){
+                    min_idx = j;
+                }
             }
 
-            int temp = arr[min_idx];
-            arr[min_idx] = arr[i];
-            arr[i] = temp;
-            
+            int temp = hours[min_idx];
+            hours[min_idx] = hours[i];
+            hours[i] = temp;
+
         }
 
 
+        for(int k =0; k<size; ++k){
+            System.out.println(hours[k]);
+        }
 
     }
 
-    public void swap(int x, int y){
-        int temp = y;
-        y = x;
-        x = temp;
 
-    }
 
     private static int inputFromFile(String filename, String[] words){
         TextFileInput in = new TextFileInput(filename);
