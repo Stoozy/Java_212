@@ -4,8 +4,9 @@ import java.awt.*;
 /**
  * @Author: Khademul Mahin
  *
- * The ClockGUI class provides two columns
- * where data can be shown.
+ * The ClockGUI class provides a JFrame
+ * with two columns where data can be shown.
+ *
  *
  */
 public class ClockGUI extends JFrame {
@@ -26,6 +27,10 @@ public class ClockGUI extends JFrame {
         // add the columns to the JFrame (this)
         this.add(c1);
         this.add(c2);
+
+        // Specify which is sorted and unsorted
+        c1.append("UNSORTED\n");
+        c2.append("SORTED\n");
 
     }
 

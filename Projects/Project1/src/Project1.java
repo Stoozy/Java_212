@@ -3,13 +3,15 @@
  *
  * This class (project1) has a custom inputFromFile
  * method which specifically reads for hours:minutes:seconds
- * where hours, minutes, seconds are integers.
+ * where hours, minutes, seconds are integers. If the input
+ * doesn't meet the requirements, it gets printed out and
+ * doesn't get added to the clock array.
  *
  * The main function instantiates the Clock class twice.
  * One of which are sorted and the other one is not.
  *
  * It also instantiates a ClockGUI,
- * where it shows the unsorted and
+ * where it displays the unsorted and
  * sorted Clock arrays side by side
  * in two columns.
  *
@@ -21,18 +23,18 @@ import java.util.StringTokenizer;
 public class Project1 {
 
     public static void main(String[] args){
-        // Original Clock Array
-        Clock[] c = new Clock[50];
 
 
+        // Stores input from file
         String[] lines = new String[50];
 
         // Get input from file and store it into lines
         // Also declare subArraySize (size) to be lengthFilled
+        // from the inputFromFile method
         int size = inputFromFile(args[0], lines);
 
-        // Sorted Clock Array
-        Clock[] d = new Clock[size];
+        Clock[] c = new Clock[size];        // Original Clock Array
+        Clock[] d = new Clock[size];        // Sorted Clock Array
 
 
         // Get all 3 variables (hours, minutes, seconds)
@@ -53,25 +55,24 @@ public class Project1 {
 
         }
 
-        // Instantiate the ClockGUI class as gui
-        ClockGUI gui = new ClockGUI("Unsorted and Sorted Times");
-
-
-        // creates a copy of c[] called d[] which will later be sorted
+        // copies c elements over to d
         for(int i = 0; i< size; i++){
             d[i] = c[i];
         }
 
-        // Selection Sort d[]
-        int min_idx=0;
 
-        for(int i=0; i < size -1; i++ ){
-            for(int j=i+1; j < size; j++){
+        // Selection Sort d[]
+        for(int i=0; i < (size -1); i++ ){
+            int min_idx=i;
+
+            for(int j= (i+1) ; j < size; j++){
+
+                // Check the hour of each clock since we are sorting by hour
                 if(d[min_idx].getHour() > d[j].getHour()) {
                     min_idx = j;
                 }
             }
-            // Check the hour of each clock since we are sorting by hour
+            // Swap the lowest value to current position/index (i)
             if(d[min_idx].getHour() != d[i].getHour()){
                 Clock temp = d[min_idx];
                 d[min_idx] = d[i];
@@ -79,6 +80,9 @@ public class Project1 {
             }
 
         }
+
+        // Instantiate the ClockGUI class as gui
+        ClockGUI gui = new ClockGUI("Unsorted and Sorted Clocks");
 
         // For each item from c[] and d[], print it out on its designated column
         for(int i =0; i< size; i++){
@@ -103,16 +107,18 @@ public class Project1 {
             StringTokenizer tokenizer = new StringTokenizer(line, ":");
             if(tokenizer.countTokens() == 3){
                 words[lengthFilled++] = line;
-                line = in.readLine();
-            }else{
-                System.out.println(line);
-                line = in.readLine();
             }
+            else{
+                System.out.println(line);
+            }
+            line = in.readLine();
 
         } // while
+
         if ( line != null) {
             System.exit(1);
         } // if
+
         in.close();
         return lengthFilled;
     }  // method inputFromFile
