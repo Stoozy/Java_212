@@ -23,9 +23,11 @@ public class Clock {
     public int getHour(){
         return this.h;
     }
+
     public int getMinutes(){
         return this.m;
     }
+
     public int getSeconds(){
         return this.s;
     }
@@ -48,6 +50,11 @@ public class Clock {
     @Override
     public String toString(){
         return this.h + ":" + this.m + ":" + this.s;
+    }
+
+    public int compareTo(Clock o){
+        return Integer.compare(this.h, o.getHour());
+
     }
 
 }
